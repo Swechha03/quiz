@@ -1,15 +1,21 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router';
 import './App.css';
 
 
-import HomePage from './components/HomePage.jsx'
+import HomePage from './pages/HomePage.jsx'
+import HtmlPage from './pages/HtmlPage.jsx'
 
 function App() {
-  const [option, setOption]= useState('');
+  const [option, setOption] = useState('');
 
   return (
     <>
-      <HomePage option={option} setOption={setOption} />
+      <Routes>
+        <Route path='/' element={<HomePage option={option} setOption={setOption} />} />
+        <Route path='/Htmlpage' element={<HtmlPage />} />
+
+      </Routes>
     </>
   )
 }
