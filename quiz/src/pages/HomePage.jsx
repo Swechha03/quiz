@@ -10,6 +10,7 @@ function HomePage({setOption}) {
   <div className="quiz-container">
     <p className="welcome-text">Welcome to the quiz app</p>
     <p className="instruction-text">Choose your today's topic</p>
+    <p> trail </p>
 
     <div className="topic-buttons">
       <button className="topic-button" onClick={()=>{setOption('HTML')}}>HTML</button>

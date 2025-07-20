@@ -1,21 +1,37 @@
+import { html } from '../data/Htmlquestions'
+
 function HtmlPage() {
     return (
-
         <>
-            <div className="quiz-container">
-                <p className="welcome-text">Best of Luck </p>
+            <div className="html-quiz-container ">
+                <p> For timer </p>
                 <p className="instruction-text">Choose your today's topic</p>
-
+                
                 <div className="options">
-                    <label>
-                        <input type="radio" value="question1" name="question1 " />ques
-                    </label>
-                    <label>
-                        <input type="radio" value="question2" name="question1 " />ques
-                    </label>
-                    <label>
-                        <input type="radio" value="question3" name="question1 " />ques
-                    </label>
+                    {html.map((question, index) => {
+                        //...is a spread operator which adds correct_answer to the array incorrect_answers
+                        const allOptions = [...question.incorrect_answers, question.correct_answer];
+                        //to shuffle the answers
+                        allOptions.sort(() =>
+                            Math.random() - 0.5);
+
+                        return (
+                            <div key={index}>
+                                <p>{question.question} </p>
+
+                                {allOptions.map((option, i) => {
+                                    return (
+                                        <>
+                                            <label key={i}>
+                                                <input type="radio" value={option} name={`question${index}`} />{option}
+                                            </label>
+
+                                        </>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}
 
 
                 </div>
