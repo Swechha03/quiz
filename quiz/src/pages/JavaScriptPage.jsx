@@ -1,6 +1,6 @@
-import { html } from '../data/htmlQuestions'
+import { JavaScript} from '../data/javaScriptQuestions'
 
-function HtmlPage() {
+function JavaScriptPage() {
     return (
         <>
             <div className="html-quiz-container ">
@@ -8,7 +8,7 @@ function HtmlPage() {
                 <p className="instruction-text">Choose your today's topic</p>
                 
                 <div className="options">
-                    {html.map((question, index) => {
+                    {JavaScript.map((question, index) => {
                         //...is a spread operator which adds correct_answer to the array incorrect_answers
                         const allOptions = [...question.incorrect_answers, question.correct_answer];
                         //to shuffle the answers
@@ -45,5 +45,5 @@ function HtmlPage() {
     );
 }
 
-export default HtmlPage
+export default JavaScriptPage
 
