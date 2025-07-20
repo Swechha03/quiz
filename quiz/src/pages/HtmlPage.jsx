@@ -1,49 +1,62 @@
-import { html } from '../data/htmlQuestions'
+import { useState, useMemo } from 'react';
+import {html} from '../data/htmlQuestions'
 
 function HtmlPage() {
+    const [answers, setAnswers] = useState([]);
+    const [score, setScore] = useState(0);
+
+    // Shuffle options only once
+    const shuffledQuestions = useMemo(() => {
+        return html.map(q => {
+            const options = [...q.incorrect_answers, q.correct_answer];
+            options.sort(() => Math.random() - 0.5);
+            return { ...q, options };
+        });
+    }, []);
+
+    const handleAnswerChange = (i, option) => {
+        const updatedAnswers = [...answers];
+        updatedAnswers[i] = option;
+        setAnswers(updatedAnswers);
+    };
+
+    const totalScore = () => {
+        let correct = 0;
+        shuffledQuestions.forEach((question, index) => {
+            if (answers[index] === question.correct_answer) {
+                correct++;
+            }
+        });
+        setScore(correct);
+    };
+
     return (
         <>
             <div className="html-quiz-container ">
-                <p> For timer </p>
-                <p className="instruction-text">Choose your today's topic</p>
-                
                 <div className="options">
-                    {html.map((question, index) => {
-                        //...is a spread operator which adds correct_answer to the array incorrect_answers
-                        const allOptions = [...question.incorrect_answers, question.correct_answer];
-                        //to shuffle the answers
-                        allOptions.sort(() =>
-                            Math.random() - 0.5);
-
-                        return (
-                            <div key={index}>
-                                <p>{question.question} </p>
-
-                                {allOptions.map((option, i) => {
-                                    return (
-                                        <>
-                                            <label key={i}>
-                                                <input type="radio" value={option} name={`question${index}`} />{option}
-                                            </label>
-
-                                        </>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })}
-
-
+                    {shuffledQuestions.map((question, index) => (
+                        <div key={index}>
+                            <p>{question.question}</p>
+                            {question.options.map((option, i) => (
+                                <label key={i}>
+                                    <input
+                                        type="radio"
+                                        value={option}
+                                        name={`question${index}`}
+                                        checked={answers[index] === option}
+                                        onChange={() => handleAnswerChange(index, option)}
+                                    />
+                                    {option}
+                                </label>
+                            ))}
+                        </div>
+                    ))}
                 </div>
-
-                <button className="start-button">Check</button>
-                <p></p>
+                <button className="start-button" onClick={totalScore}>Check</button>
+                {score !== null && <p>Your score is {score}</p>}
             </div>
         </>
-
-
     );
 }
 
-export default HtmlPage
-
+export default HtmlPage;
