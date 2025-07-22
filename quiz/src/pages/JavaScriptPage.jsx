@@ -1,43 +1,80 @@
 import { JavaScript} from '../data/javaScriptQuestions'
+import { useState, useMemo } from 'react'
 
 function JavaScriptPage() {
+
+    
+    const [score, setScore] = useState(0);
+    const [answers, setAnswers]=useState([]);
+    
+
+    //this shuffle the answers and adds it to the each question and answers object
+    const shuffledQuestions = useMemo(() => {
+        return (
+            JavaScript.map((question) => {
+                const options = [...question.incorrect_answers, question.correct_answer];
+                options.sort(() => Math.random() - 0.5);
+                return { ...question, options };
+            })
+        )
+    }, []);
+
+    const handleAnswerChange = (index, option) => {
+        const updatedAnswer = [...answers];
+        updatedAnswer[index] = option;
+        setAnswers(updatedAnswer);
+    }
+
+    
+
+    const totalScore = () => {
+        let correct = 0;
+        shuffledQuestions.forEach((question, index) => {
+            if (answers[index] === question.correct_answer) {
+                correct++;
+            }
+        })
+
+        setScore(correct);
+    }
+
     return (
         <>
             <div className="html-quiz-container ">
                 <p> For timer </p>
                 <p className="instruction-text">Choose your today's topic</p>
-                
-                <div className="options">
-                    {JavaScript.map((question, index) => {
-                        //...is a spread operator which adds correct_answer to the array incorrect_answers
-                        const allOptions = [...question.incorrect_answers, question.correct_answer];
-                        //to shuffle the answers
-                        allOptions.sort(() =>
-                            Math.random() - 0.5);
 
-                        return (
-                            <div key={index}>
-                                <p>{question.question} </p>
+                {shuffledQuestions.map((question, index) => {
+                    return (
+                        <div key={index}>
 
-                                {allOptions.map((option, i) => {
-                                    return (
-                                        <>
-                                            <label key={i}>
-                                                <input type="radio" value={option} name={`question${index}`} />{option}
-                                            </label>
+                            <p> {question.question}</p>
+                            {question.options.map((option, i) => {
+                                return (
 
-                                        </>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })}
+                                    <label key={i}>
+                                        <input type="radio"
+                                            value={option}
+                                            name={`question${index}`}
+                                            checked={answers[index] === option}
+                                            onChange={() => {
+                                                handleAnswerChange(index, option)
+                                            }}
+                                        />
+                                        {option}
 
+                                    </label>
+                                )
+                            })}
+
+                        </div>
+                    )
+                })}
+                <div>
 
                 </div>
-
-                <button className="start-button">Check</button>
-                <p></p>
+                <button className="start-button" onClick={totalScore}>Check</button>
+                <p> Your score is {score}</p>
             </div>
         </>
 
@@ -45,5 +82,5 @@ function JavaScriptPage() {
     );
 }
 
-export default JavaScriptPage
+export default JavaScriptPage;
 
