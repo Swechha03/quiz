@@ -1,59 +1,90 @@
-.quiz-container {
-  max-width: 420px;
-  margin: 80px auto;
-  padding: 30px 25px;
-  border-radius: 12px;
-  background-color: #f4f4f4;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+/* HomePage.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+
+.homePage-box {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .welcome-text {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #007bff;
+  margin-bottom: 15px;
 }
 
 .instruction-text {
-  font-size: 1.1rem;
-  color: #555;
+  font-size: 1.2rem;
+  color: #333;
   margin-bottom: 25px;
 }
 
 .topic-buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .topic-button {
-  flex: 1;
-  padding: 10px 0;
-  background-color: #e0e0e0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 12px 24px;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .topic-button:hover {
-  background-color: #ccc;
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .start-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  background-color: #28a745;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
   color: white;
+  background-color: #28a745;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .start-button:hover {
   background-color: #218838;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .homePage-box {
+    padding: 25px;
+    margin: 30px 15px;
+  }
+
+  .topic-button {
+    width: 100%;
+  }
+
+  .start-button {
+    width: 100%;
+    margin-top: 20px;
+  }
 }

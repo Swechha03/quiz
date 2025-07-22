@@ -24,7 +24,7 @@ function navigateTo(){
   return (
     
       <>
-  <div className="quiz-container">
+  <div className="homePage-box">
     <p className="welcome-text">Welcome to the quiz app</p>
     <p className="instruction-text">Choose your today's topic</p>
 

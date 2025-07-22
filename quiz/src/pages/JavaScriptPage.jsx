@@ -1,5 +1,6 @@
 import { JavaScript} from '../data/javaScriptQuestions'
 import { useState, useMemo } from 'react'
+import './quizPage.css'
 
 function JavaScriptPage() {
 
@@ -40,7 +41,7 @@ function JavaScriptPage() {
 
     return (
         <>
-            <div className="html-quiz-container ">
+            <div className="quiz-container ">
                 <p> For timer </p>
                 <p className="instruction-text">Choose your today's topic</p>
 
