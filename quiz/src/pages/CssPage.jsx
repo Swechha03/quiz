@@ -1,4 +1,4 @@
-import { CSS } from '../data/cssQuestions'
+import { CSS } from '../data/cssQuestions.js'
 import { useState, useMemo } from 'react'
 import './quizPage.css'
 

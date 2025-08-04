@@ -1,4 +1,4 @@
-import { JavaScript} from '../data/javaScriptQuestions'
+import { JavaScript} from '../data/javaScriptQuestions.js'
 import { useState, useMemo } from 'react'
 import './quizPage.css'
 
