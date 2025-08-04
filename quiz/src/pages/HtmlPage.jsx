@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { html } from '../data/htmlQuestions';
+import { html } from '../data/htmlQuestions.js';
 import './quizPage.css'
 
 function HtmlPage() {
